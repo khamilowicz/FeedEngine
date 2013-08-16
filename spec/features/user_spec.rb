@@ -39,7 +39,8 @@ describe "Authenticated user" do
     it "can republish posts of other feeds" do
       click_link 'Refeed'
       visit url_for_subdomain(user.subdomain)
-      page.should have_posts(feed.posts),  "#{page.find('body').native}"
+
+      page.should have_posts(feed.posts)
     end
   end
 end

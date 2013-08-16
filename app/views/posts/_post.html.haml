@@ -3,4 +3,4 @@
   = post.description
   = post.user.nick
   = link_to "Points! #{post.points}", add_points_post_path(post)
-  = link_to "Refeed"
+  = link_to "Refeed", refeed_post_path(post)

@@ -13,7 +13,10 @@ FeedEngine::Application.routes.draw do
   end
 
   resources :posts do 
-    member { get 'add_points'}
+    member { 
+      get 'add_points'
+      get 'refeed'
+    }
   end
   
   root :to => "home#index"
