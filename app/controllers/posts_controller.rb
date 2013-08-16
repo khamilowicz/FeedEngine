@@ -1,7 +1,6 @@
-require 'pry'
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:refeed]
 
   def add_points
     redirect_to :back

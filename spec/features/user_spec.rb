@@ -5,6 +5,7 @@ describe "Authenticated user" do
   def sign_in user
     visit '/'
     click_link 'Log in'
+    page.should have_content('Email'), "#{page.find('body').native}"
     fill_in :user_email, with: user.email
     fill_in :user_password, with: user.password
     click_button 'Sign in'
@@ -37,6 +38,8 @@ describe "Authenticated user" do
     end
 
     it "can republish posts of other feeds" do
+      click_link "Sign out"
+      sign_in(user)
       click_link 'Refeed'
       visit url_for_subdomain(user.subdomain)
 
