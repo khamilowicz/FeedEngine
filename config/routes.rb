@@ -1,12 +1,15 @@
 FeedEngine::Application.routes.draw do
+  get "feed/index"
   resources :users
   get "home/index"
   get "/" => "home#index", constraints: {subdomain: 'www'}
   
   constraints subdomain: /.+/ do 
-    get "/" => "users#show"
+    get "/" => "feeds#index"
     get "/profile" => "users#profile"
   end
+
+  resources :posts
   
   root :to => "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
