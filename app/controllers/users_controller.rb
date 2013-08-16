@@ -4,11 +4,11 @@ class UsersController < ApplicationController
   end
 
   def show
-   @user = User.where(subdomain: subdomain).first || render_404
+   @user = subdomain_holder || render_404
   end
 
   def profile
-    @user = User.where(subdomain: subdomain).first || render_404
+    @user = subdomain_holder || render_404
   end
 
   def update
