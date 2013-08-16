@@ -3,9 +3,10 @@ require "spec_helper"
 describe FeedsController do
 
     let(:user) {FactoryGirl.create(:user)}
+
   before(:each) do
     @request.host = user.subdomain + '.example.com'
-    user.feeds << FactoryGirl.create(:feed, :with_posts, post_number: 2)
+    user.add_to_main_feed  FactoryGirl.create(:post)
   end
   context "#index" do
     it "paginates pages based on paginates_per value" do

@@ -4,6 +4,5 @@ FactoryGirl.define do
   factory :post do
     sequence(:title){ |n| "Posttitle#{n}"}
     sequence(:description){ |n| "Postdescription#{n}"}
-    user_id 1
   end
 end

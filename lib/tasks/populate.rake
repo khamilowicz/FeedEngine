@@ -6,7 +6,9 @@ namespace :db do
 
     users = FactoryGirl.create_list(:user, 2);
     users.each do |u| 
-      u.feeds << FactoryGirl.create(:feed, :with_posts, post_number: 3)
+      2.times {
+      u.add_to_main_feed FactoryGirl.create(:post)
+      }
     end 
   end
 end

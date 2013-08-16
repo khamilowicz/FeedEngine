@@ -6,7 +6,7 @@ FactoryGirl.define do
 
     trait :with_posts do 
       ignore do 
-        post_number 5
+        post_number 1
       end
 
       after(:create) do |feed, evaluator|

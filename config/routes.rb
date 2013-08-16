@@ -1,4 +1,7 @@
 FeedEngine::Application.routes.draw do
+
+  devise_for(:user)
+  
   get "feed/index"
   resources :users
   get "home/index"
@@ -9,7 +12,9 @@ FeedEngine::Application.routes.draw do
     get "/profile" => "users#profile"
   end
 
-  resources :posts
+  resources :posts do 
+    member { get 'add_points'}
+  end
   
   root :to => "home#index"
   # The priority is based upon order of creation: first created -> highest priority.

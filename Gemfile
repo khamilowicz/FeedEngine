@@ -7,8 +7,10 @@ gem 'rspec'
 gem 'rspec-rails'
 gem 'capybara'
 gem 'haml-rails'
-gem 'better_errors'
-gem 'binding_of_caller'
+group :development do 
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 gem 'factory_girl_rails'
 gem 'pry'
 gem 'pg'

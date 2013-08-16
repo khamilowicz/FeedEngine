@@ -1,5 +1,4 @@
 = @feed.user.nick
-%h1 Feed#index
-%p Find me in app/views/feed/index.html.haml
 = render 'posts/form', post: Post.new
-= render @feed.posts
+.posts
+  = render @posts

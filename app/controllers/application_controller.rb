@@ -13,6 +13,10 @@ def subdomain_holder
   @subdomain_holder = User.where(subdomain: subdomain).first
 end
 
+def after_sign_in_path_for user
+  profile_url(subdomain: user.subdomain)
+end
+
 def render_404
   respond_to do |format|
     format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
