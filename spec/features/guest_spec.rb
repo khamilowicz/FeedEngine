@@ -10,7 +10,6 @@ describe "Guest" do
     user = FactoryGirl.create(:user, password: 12345678, password_confirmation: 12345678)
     visit '/'
     click_link 'Log in'
-    # true.should be_false, "#{page.find('body').native}"
     fill_in :user_email, with: user.email
     fill_in :user_password, with: 12345678 
     click_button 'Sign in'
@@ -23,7 +22,7 @@ describe "Guest" do
     before(:each) do
       user.feeds.delete_all
       user.feeds << FactoryGirl.create(:feed, :with_posts, post_number: 1)
-      visit user_feed user
+      visit "/#{user.subdomain}"
     end
     
     it "can see posts" do

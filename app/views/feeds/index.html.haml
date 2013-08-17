@@ -1,4 +1,4 @@
 = @feed.user.nick
-= render 'posts/form', post: Post.new
+= render 'posts/form', feed: @feed, post: Post.new
 .posts
-  = render @posts
+  = render @posts, feed: @feed

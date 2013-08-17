@@ -3,24 +3,24 @@ FeedEngine::Application.routes.draw do
   devise_for(:users)
   
   get "feed/index"
+
   resources :users do 
-    collection { get 'login'}
+    member { get 'profile'}
   end
+
+
   get "home/index"
 
-  get "/" => "home#index", constraints: {subdomain: 'www'}
-  
-  constraints subdomain: /.+/ do 
-    get "/" => "feeds#index"
-    get "/profile" => "users#profile"
-  end
-
-  resources :posts do 
-    member { 
-      get 'add_points'
-      get 'refeed'
-    }
-  end
+    # resources :posts do 
+    #   member do  
+    #     get 'add_points'
+    #     get 'refeed'
+    #   end
+    # end
+  get "/:feed/posts/:id/add_points" => 'posts#add_points', as: 'add_points_feed_post'
+  get "/:feed/posts/:id/refeed" => 'posts#refeed', as: 'refeed_feed_post'
+  post "/:feed/posts" => 'posts#create', as: 'feed_posts'
+  get "/:feed" => 'feeds#index', as: 'feed'
   
   root :to => "home#index"
   # The priority is based upon order of creation: first created -> highest priority.

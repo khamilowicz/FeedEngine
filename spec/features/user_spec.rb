@@ -19,7 +19,6 @@ describe "Authenticated user" do
   end
 
   it "redirects to profile after sign in" do
-    current_path.should == '/profile'
     page.should have_content("#{user.nick}'s profile")
   end
 
@@ -28,12 +27,12 @@ describe "Authenticated user" do
 
     before(:each) do
       other_user.add_to_main_feed FactoryGirl.create(:post)
-      visit url_for_subdomain(other_user.subdomain)
+      visit "/#{other_user.subdomain}"
     end
 
     it "can see public feeds" do
       page.should have_posts(feed.posts), "#{page.find('body').native}"
-      visit url_for_subdomain(user.subdomain)
+      visit "/#{user.subdomain}"
       page.should_not have_posts(feed.posts)
     end
 

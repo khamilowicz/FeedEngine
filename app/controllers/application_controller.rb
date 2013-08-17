@@ -6,7 +6,8 @@ protect_from_forgery with: :exception
 private
 
 def subdomain
-  request.subdomain.downcase
+  # request.subdomain.downcase
+  params[:feed]
 end
 
 def subdomain_holder
@@ -14,7 +15,8 @@ def subdomain_holder
 end
 
 def after_sign_in_path_for user
-  profile_url(subdomain: user.subdomain)
+  profile_user_path(user.id)
+  # profile_url(subdomain: user.subdomain)
 end
 
 def render_404
