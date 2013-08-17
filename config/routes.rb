@@ -11,6 +11,7 @@ FeedEngine::Application.routes.draw do
   get "/:feed/posts/:id/add_points" => 'posts#add_points', as: 'add_points_feed_post'
   get "/:feed/posts/:id/refeed" => 'posts#refeed', as: 'refeed_feed_post'
   post "/:feed/posts" => 'posts#create', as: 'feed_posts'
+  get "/:feed/ask_for_access" => 'feeds#ask_for_access', as: 'ask_for_access_feed'
   get "/:feed" => 'feeds#index', as: 'feed'
   
   root :to => "home#index"

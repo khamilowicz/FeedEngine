@@ -49,19 +49,25 @@ describe "Authenticated user" do
 
       before(:each) do
         user_private.add_to_main_feed FactoryGirl.create(:post)
+        user_private.main_feed.lock
       end
 
       it "can see content if he has access" do
-        user_private.main_feed.lock.allow(user)
+        feed.allow(user)
         visit url_for_subdomain(user_private.subdomain)
         page.should have_posts(feed.posts)
       end
 
       it "can not see content if he has no access" do
-        user_private.main_feed.lock
         visit url_for_subdomain(user_private.subdomain)
         page.should have_content("This feed is private.")
         page.should_not have_posts(feed.posts)
+      end
+
+      it "can ask for access" do
+        visit url_for_subdomain(user_private.subdomain)
+        FeedManager.should_receive(:ask_for_access).with(user.id, feed.id){ true }
+        click_link "Ask for access"
       end
     end
   end
