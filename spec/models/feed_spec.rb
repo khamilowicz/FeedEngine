@@ -15,4 +15,31 @@ describe Feed do
     feed.posts << post_later
     feed.posts.should eq([post_later, post_later, post_earlier])
   end
+
+  context "can be locked" do
+
+    before(:each) do
+      feed.lock 
+    end
+
+    let(:feed){ Feed.new user: owner}
+    subject{feed}
+    let(:user){ FactoryGirl.create(:user)}
+    let(:owner){ FactoryGirl.create(:user)}
+
+    it{should_not be_public}
+
+    it "allows owner to see itself" do
+      feed.allow?(owner).should be_true 
+    end
+
+    it "doesn't allow users to see it" do
+      feed.allow?(user).should be_false
+    end
+
+    it "can allow users to see itself" do
+      feed.allow(user)
+      feed.allow?(user).should be_true
+    end
+  end
 end

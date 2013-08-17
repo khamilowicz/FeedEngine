@@ -2,21 +2,12 @@ FeedEngine::Application.routes.draw do
 
   devise_for(:users)
   
-  get "feed/index"
-
   resources :users do 
     member { get 'profile'}
   end
 
-
   get "home/index"
 
-    # resources :posts do 
-    #   member do  
-    #     get 'add_points'
-    #     get 'refeed'
-    #   end
-    # end
   get "/:feed/posts/:id/add_points" => 'posts#add_points', as: 'add_points_feed_post'
   get "/:feed/posts/:id/refeed" => 'posts#refeed', as: 'refeed_feed_post'
   post "/:feed/posts" => 'posts#create', as: 'feed_posts'
