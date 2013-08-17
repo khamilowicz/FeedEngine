@@ -1,10 +1,13 @@
 FeedEngine::Application.routes.draw do
 
-  devise_for(:user)
+  devise_for(:users)
   
   get "feed/index"
-  resources :users
+  resources :users do 
+    collection { get 'login'}
+  end
   get "home/index"
+
   get "/" => "home#index", constraints: {subdomain: 'www'}
   
   constraints subdomain: /.+/ do 
