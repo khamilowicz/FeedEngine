@@ -21,6 +21,6 @@ class User < ActiveRecord::Base
   private 
 
   def create_feed
-    feeds.create
+    feeds.create(subdomain: nick.downcase)
   end
 end

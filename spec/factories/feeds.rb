@@ -4,6 +4,10 @@ FactoryGirl.define do
   factory :feed do
     user
 
+    after(:create) do |feed|
+      feed.subdomain = feed.user.nick.downcase 
+    end
+
     trait :with_posts do 
       ignore do 
         post_number 1

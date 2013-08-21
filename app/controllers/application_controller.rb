@@ -10,13 +10,16 @@ def subdomain
   params[:feed]
 end
 
+def current_feed
+  @feed ||= Feed.where(subdomain: subdomain).first
+end
+
 def subdomain_holder
-  @subdomain_holder = User.where(subdomain: subdomain).first
+  @subdomain_holder ||= current_feed.owner
 end
 
 def after_sign_in_path_for user
-  profile_user_path(user.id)
-  # profile_url(subdomain: user.subdomain)
+  profile_user_path(user)
 end
 
 def render_404

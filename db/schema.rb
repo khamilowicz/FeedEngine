@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130816152603) do
+ActiveRecord::Schema.define(version: 20130821183238) do
 
   create_table "allowed_users_feeds", force: true do |t|
     t.integer  "user_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20130816152603) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "public",     default: true
+    t.string   "subdomain"
   end
 
   create_table "feeds_posts", force: true do |t|
@@ -58,7 +59,6 @@ ActiveRecord::Schema.define(version: 20130816152603) do
     t.integer  "age"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "subdomain"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

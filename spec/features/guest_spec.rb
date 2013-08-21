@@ -1,7 +1,7 @@
 require "spec_helper"
 
 def user_feed user
-  url_for_subdomain user.subdomain
+  url_for_subdomain user.main_feed.subdomain
 end
 
 describe "Guest" do
@@ -20,9 +20,8 @@ describe "Guest" do
     let(:user) {FactoryGirl.create(:user)}
 
     before(:each) do
-      user.feeds.delete_all
-      user.feeds << FactoryGirl.create(:feed, :with_posts, post_number: 1)
-      visit "/#{user.subdomain}"
+      user.main_feed.posts.create 
+      visit user_feed user
     end
     
     it "can see posts" do
@@ -30,7 +29,7 @@ describe "Guest" do
       page.should have_posts(user.main_feed.posts)
     end
 
-    it "can add point to posts" do
+    it "can not add point to posts" do
       page.should have_content("Points! 0")
       click_link 'Points!'
       page.should_not have_content("Points! 1")

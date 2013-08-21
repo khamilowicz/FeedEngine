@@ -10,9 +10,5 @@ FactoryGirl.define do
     description "Just a humble bounty hunter"
     sequence(:nick){|n| "Spike#{n}"}
     age '24'
-
-    after(:build) do |user|
-      user.subdomain = user.nick.downcase
-    end
   end
 end

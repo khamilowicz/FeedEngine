@@ -16,6 +16,6 @@ class Post < ActiveRecord::Base
   end
 
   def main_feed
-    self.feeds.first
+    feeds.first
   end
 end
