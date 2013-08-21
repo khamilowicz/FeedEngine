@@ -14,6 +14,8 @@ def current_feed
   @feed ||= Feed.where(subdomain: subdomain).first
 end
 
+helper_method :current_feed
+
 def subdomain_holder
   @subdomain_holder ||= current_feed.owner
 end
