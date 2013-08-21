@@ -1,4 +1,8 @@
+= "Total points #{current_feed.total_points}"
 = @feed.user.nick
-= render 'posts/form', feed: current_feed, post: Post.new
+.forms
+  = link_to 'Photos', '#'
+  = render 'posts/photo_form', feed: current_feed, post: PhotoPost.new
+  = render 'posts/form', feed: current_feed, post: Post.new
 .posts
-  = render @posts, feed: @feed
+  = render partial: 'posts/post', collection: @posts, as: :post, locals: {feed: @feed}

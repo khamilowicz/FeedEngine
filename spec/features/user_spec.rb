@@ -32,9 +32,22 @@ describe "Authenticated user" do
     end
     it "posts a message" do
       # true.should be_false, "#{page.find('body').native}"
-      fill_in 'post[description]', with: 'Text message'
-      click_button 'Submit'
+      within('.new_post'){
+        fill_in 'post[description]', with: 'Text message'
+        click_button 'Submit'
+      }
       page.should have_content "Text message"
+    end
+
+    it "posts a photo with 256 char long message" do
+      click_link 'Photo'
+      within('form.new_photo_post'){
+        fill_in 'photo_post[description]', with: 'some description'
+        fill_in 'photo_post[photo]', with: 'http://www.whatever.com/something.jpg'
+        click_button 'Submit'
+      }
+      page.should have_content('some description')
+      page.should have_selector("img[src='http://www.whatever.com/something.jpg']")
     end
     
   end

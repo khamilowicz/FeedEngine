@@ -16,6 +16,13 @@ describe Feed do
     feed.posts.should eq([post_later, post_later, post_earlier])
   end
 
+  it "has total points for all posts" do
+    feed = FactoryGirl.create(:feed)
+    posts = FactoryGirl.create_list(:post, 2, points: 2)
+    feed.posts << posts
+    feed.total_points.should eq(4)
+  end
+
   context "can be locked" do
 
     before(:each) do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821183238) do
+ActiveRecord::Schema.define(version: 20130821205742) do
 
   create_table "allowed_users_feeds", force: true do |t|
     t.integer  "user_id"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20130821183238) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "points",      default: 0
+    t.string   "content"
+    t.string   "type"
   end
 
   create_table "users", force: true do |t|

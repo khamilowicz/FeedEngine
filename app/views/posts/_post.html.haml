@@ -2,5 +2,7 @@
   = post.title
   = post.description
   = post.user.nick
+  .content
+    = post.render_content(self)
   = link_to "Points! #{post.points}", add_points_feed_post_path(feed.subdomain, post)
   = link_to "Refeed", refeed_feed_post_path(feed, post)

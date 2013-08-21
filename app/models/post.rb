@@ -6,6 +6,11 @@ class Post < ActiveRecord::Base
 
   paginates_per 10
 
+  validates_length_of :description, maximum: 512
+
+  def render_content template
+    nil
+  end
 
   def add_points
     self.points+=1

@@ -11,7 +11,6 @@ class PostsController < ApplicationController
 
   def create
     current_feed.posts.create(post_params)
-    @posts = current_feed.posts.all
     redirect_to :back
   end
 
@@ -24,6 +23,10 @@ class PostsController < ApplicationController
   private 
 
   def post_params
-    params.require(:post).permit(:title, :description)
+    if params.key? :post
+      params.require(:post).permit(:title, :description)
+    elsif params.key? :photo_post
+      params.require(:photo_post).permit(:photo, :title, :description, :type)
+    end
   end
 end
