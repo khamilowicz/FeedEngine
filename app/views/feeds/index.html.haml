@@ -5,4 +5,4 @@
   = render 'posts/photo_form', feed: current_feed, post: PhotoPost.new
   = render 'posts/form', feed: current_feed, post: Post.new
 .posts
-  = render partial: 'posts/post', collection: @posts, as: :post, locals: {feed: @feed}
+  = render @posts, feed: @feed

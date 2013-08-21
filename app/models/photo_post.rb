@@ -6,4 +6,8 @@ class PhotoPost < Post
   def render_content template
     template.render 'posts/photo', photo_url: photo
   end
+
+  def to_partial_path
+   'posts/post' 
+  end
 end
