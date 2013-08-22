@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821205742) do
+ActiveRecord::Schema.define(version: 20130822173223) do
 
   create_table "allowed_users_feeds", force: true do |t|
     t.integer  "user_id"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20130821205742) do
   create_table "feeds_posts", force: true do |t|
     t.integer "feed_id"
     t.integer "post_id"
+  end
+
+  create_table "messages", force: true do |t|
+    t.integer "sender_id"
+    t.string  "sender_type"
+    t.text    "content"
+    t.string  "subject"
+    t.integer "receiver_id"
+    t.string  "receiver_type"
+    t.string  "message_type"
   end
 
   create_table "posts", force: true do |t|

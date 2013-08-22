@@ -8,8 +8,9 @@ gem 'rspec-rails'
 gem 'capybara'
 gem 'haml-rails'
 gem 'vcr'
-gem 'webmock'
+gem 'webmock', group: [:test]
 gem 'twitter'
+gem 'rails-observers'
 
 group :development do 
   gem 'better_errors'

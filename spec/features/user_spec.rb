@@ -30,6 +30,33 @@ describe "Authenticated user" do
     before(:each) do
       visit user_feed user
     end
+
+    context "on visibility tab" do
+      before(:each) do
+        click_link "Visibility"
+      end
+
+      it "can change profile's visibilty and see the current status" do 
+        page.should have_content "Feed is public"
+        page.should have_no_content "Feed is private"
+        click_link "Make private"
+        page.should have_no_content "Feed is public"
+        page.should have_content "Feed is private"
+      end
+
+      it "can see pending requests for access, grant one and see list of approved users" do
+        other_user = FactoryGirl.create(:user)
+        visit current_path
+        page.should have_no_content other_user.nick
+        FeedManager.ask_for_access other_user, user.main_feed
+        visit current_path
+        within('.granted'){ page.should have_no_content other_user.nick}
+        within('.pleads'){ page.should have_content other_user.nick}
+        click_button "Approve"
+        within('.granted'){ page.should have_content other_user.nick }
+        within('.pleads'){ page.should have_no_content other_user.nick }
+      end
+    end
     it "posts a message" do
       # true.should be_false, "#{page.find('body').native}"
       within('.new_post'){

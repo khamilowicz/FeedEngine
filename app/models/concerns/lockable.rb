@@ -5,13 +5,18 @@ module Lockable
       extend ClassMethods
       include InstanceMethods
       has_many :allowed_users_feeds, class_name: 'AllowedUsersFeeds'
-      has_many :allowed_users, through: :allowed_users_feeds 
+      has_many :allowed_users, through: :allowed_users_feeds, after_add: :mark_change 
 
       after_create :allow_owner 
     end
   end
 
   module InstanceMethods
+
+    def mark_change user
+      @changed_attributes[:allowed_users] ||= []
+      @changed_attributes[:allowed_users] += [user]
+    end
 
     def allow? user
       self.public || self.allowed_users.where(id: user.id).exists?
@@ -23,7 +28,7 @@ module Lockable
     end
 
     def allow_owner
-      self.allowed_users << self.user
+      self.allowed_users << self.owner
     end
 
     def lock

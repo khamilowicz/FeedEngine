@@ -12,6 +12,9 @@ FeedEngine::Application.routes.draw do
   get "/:feed/posts/:id/refeed" => 'posts#refeed', as: 'refeed_feed_post'
   post "/:feed/posts" => 'posts#create', as: 'feed_posts'
   get "/:feed/ask_for_access" => 'feeds#ask_for_access', as: 'ask_for_access_feed'
+  get "/:feed/visibility" => 'feeds#visibility', as: "visibility_feed"
+  post "/:feed/visibility/:user_id" => 'feeds#approve_access', as: "approve_access_feed"
+  get "/:feed/visibility/toggle" => 'feeds#toggle_visibility', as: "toggle_visibility_feed"
   get "/:feed" => 'feeds#index', as: 'feed'
   
   root :to => "home#index"

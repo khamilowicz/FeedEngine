@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
 
+  include Messengable
+
   has_many :feeds
   has_many :posts, through: :feeds
 

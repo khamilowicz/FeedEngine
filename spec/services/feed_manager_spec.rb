@@ -10,7 +10,7 @@ describe FeedManager do
     it "should send message via given sender" do
       feed.stub(:owner)
       sender = double
-      sender.should_receive(:send).with({to: feed.owner, from: user})
+      sender.should_receive(:send_message)
       FeedManager.ask_for_access(user, feed, sender)
     end
   end

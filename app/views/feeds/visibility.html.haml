@@ -1,0 +1,6 @@
+= "Feed is #{current_feed.public? ? "public" : "private"}"
+= link_to "Make private", toggle_visibility_feed_path
+.granted
+  = render current_feed.allowed_users
+.pleads
+  = render current_user.inbox.access_requests.to_a
