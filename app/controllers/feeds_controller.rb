@@ -1,4 +1,5 @@
 class FeedsController < ApplicationController
+  before_action :new_feed
   before_action :private_feed_lock, except: [:ask_for_access]
 
   def index
@@ -35,6 +36,12 @@ class FeedsController < ApplicationController
   def private_feed_lock
     unless current_feed.allow?(current_user)
       render 'not_allowed'
+    end
+  end
+
+  def new_feed
+    unless current_feed
+      redirect_to root_url
     end
   end
 end

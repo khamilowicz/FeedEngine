@@ -1,5 +1,5 @@
 require "spec_helper"
-
+require_relative "../../fixtures/vcr_conf.rb"
 describe TwitterFeed do
   let(:source){ "Khamilowicz" }
   before(:each) do

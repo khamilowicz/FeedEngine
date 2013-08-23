@@ -7,7 +7,7 @@ gem 'rspec'
 gem 'rspec-rails'
 gem 'capybara'
 gem 'haml-rails'
-gem 'vcr'
+gem 'vcr', group: [:test]
 gem 'webmock', group: [:test]
 gem 'twitter'
 gem 'rails-observers'
