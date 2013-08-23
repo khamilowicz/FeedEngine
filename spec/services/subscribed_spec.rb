@@ -16,10 +16,5 @@ describe Subscribed do
     it "can subscribe to services" do
       @feed.subscribed_feeds.should_not be_empty
     end
-
-    it "renders its subsribed feeds" do
-      TwitterFeed.any_instance.should_receive(:render)
-      @feed.render_services
-    end
   end
 end

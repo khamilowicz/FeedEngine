@@ -3,7 +3,7 @@ class FeedsController < ApplicationController
   before_action :private_feed_lock, except: [:ask_for_access]
 
   def index
-    @posts = current_feed.posts.page params[:page]
+    @posts = current_feed.all_posts
   end
 
   def add_service

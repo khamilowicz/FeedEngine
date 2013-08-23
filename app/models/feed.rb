@@ -12,6 +12,4 @@ class Feed < ActiveRecord::Base
   def total_points
     posts.sum(:points)
   end
-
-
 end

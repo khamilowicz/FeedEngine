@@ -1,4 +1,5 @@
 require "spec_helper"
+require_relative "../../fixtures/vcr_conf.rb"
 
 describe "Authenticated user" do
 

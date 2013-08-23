@@ -6,6 +6,11 @@ end
 
 describe "Guest" do
 
+  it "cannot go to nonexistent feed" do
+    visit '/somefeed'
+    current_path.should eq('/')
+  end
+
   it "can log in" do
     user = FactoryGirl.create(:user, password: 12345678, password_confirmation: 12345678)
     visit '/'
