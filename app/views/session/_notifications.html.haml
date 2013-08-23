@@ -1,0 +1,3 @@
+.notifications
+  -if current_user.inbox.access_requests.any?
+    = "Pending access requests: #{current_user.inbox.access_requests.count}" 

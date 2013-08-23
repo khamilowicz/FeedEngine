@@ -5,8 +5,16 @@ class FeedsController < ApplicationController
     @posts = current_feed.posts.page params[:page]
   end
 
-  def approve_access
+  def add_service
+    if params[:add] == 'false'
+      current_feed.unsubscribe :twitter, params[:twitter_id]
+    else
+      current_feed.subscribe :twitter, params[:twitter_id]
+    end
+    redirect_to :back
+  end
 
+  def approve_access
     user = User.find(params[:user_id])
     current_feed.allow(user).save
     redirect_to :back

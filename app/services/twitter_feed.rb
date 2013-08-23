@@ -12,6 +12,8 @@ class TwitterFeed
   def tweets
     Tweet.from_twitter Twitter.user_timeline(source)
   end
+
+  alias_method :posts, :tweets
 end
 
 class Tweet
@@ -31,5 +33,9 @@ class Tweet
 
   def body
     original_tweet.attrs[:text]
+  end
+
+  def to_partial_path 
+    'posts/tweet'
   end
 end

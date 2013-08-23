@@ -26,9 +26,38 @@ describe "Authenticated user" do
     page.should have_content("#{user.nick}'s profile")
   end
 
+  it "can see notification about pending access requests with count" do
+    page.should have_no_content("Pending access requests:")
+    FeedManager.ask_for_access other_user, user.main_feed
+    visit current_path
+    page.should have_content("Pending access requests: 1") 
+  end
+
   context "on his profile" do
     before(:each) do
       visit user_feed user
+    end
+
+    context "on linked services tab" do
+      before(:each) do
+        click_link 'Linked Services'
+      end
+
+      it "can link to twitter account" do
+        within('.add'){fill_in 'twitter_id', with: 'Khamilowicz'}
+        VCR.use_cassette(:tweets_me) do 
+          click_button "Link to Twitter"
+          visit user_feed user
+        end
+        page.should have_selector('.tweet')
+        page.should have_content('test tweet')
+        click_link 'Linked Services'
+        within('.remove'){fill_in 'twitter_id', with: 'Khamilowicz'}
+        click_button "Unlink Twitter"
+        visit user_feed user
+        page.should_not have_selector('.tweet')
+        page.should have_content
+      end
     end
 
     context "on visibility tab" do
@@ -58,7 +87,6 @@ describe "Authenticated user" do
       end
     end
     it "posts a message" do
-      # true.should be_false, "#{page.find('body').native}"
       within('.new_post'){
         fill_in 'post[description]', with: 'Text message'
         click_button 'Submit'
@@ -76,7 +104,7 @@ describe "Authenticated user" do
       page.should have_content('some description')
       page.should have_selector("img[src='http://www.whatever.com/something.jpg']")
     end
-    
+
   end
 
   context "on other feeds" do

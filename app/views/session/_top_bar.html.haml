@@ -1,5 +1,6 @@
--unless current_user.nil?
+-if user_signed_in?
   = "Logged as: #{current_user.nick}" 
+  = render 'session/notifications'
 -else
   Guest
 = link_to "Sign out", destroy_user_session_path, method: :delete

@@ -1,0 +1,12 @@
+.add
+  = form_tag add_service_feed_path do 
+    = label_tag :twitter_id, "Twitter id"
+    = text_field_tag :twitter_id 
+    = submit_tag 'Link to Twitter'
+
+.remove
+  = form_tag add_service_feed_path do 
+    = label_tag :twitter_id, "Twitter id"
+    = text_field_tag :twitter_id 
+    = hidden_field_tag :add, false
+    = submit_tag 'Unlink Twitter'

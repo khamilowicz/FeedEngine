@@ -1,6 +1,7 @@
 class Feed < ActiveRecord::Base
 
   include Lockable
+  include Subscribed
 
   belongs_to :user
   alias_attribute :owner, :user

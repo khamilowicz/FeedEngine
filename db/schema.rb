@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822173223) do
+ActiveRecord::Schema.define(version: 20130823181347) do
 
   create_table "allowed_users_feeds", force: true do |t|
     t.integer  "user_id"
@@ -52,6 +52,17 @@ ActiveRecord::Schema.define(version: 20130822173223) do
     t.string   "content"
     t.string   "type"
   end
+
+  create_table "subscribed_feeds", force: true do |t|
+    t.string   "service"
+    t.string   "identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "subscribent_id"
+    t.string   "subscribent_type"
+  end
+
+  add_index "subscribed_feeds", ["subscribent_id", "subscribent_type"], name: "index_subscribed_feeds_on_subscribent_id_and_subscribent_type"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
