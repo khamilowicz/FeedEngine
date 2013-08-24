@@ -8,4 +8,8 @@ class SubscribedFeed < ActiveRecord::Base
         ).posts
     end
   end
+
+  def self.list
+    all.to_a.collect{|sf| sf.identifier}
+  end
 end
