@@ -15,6 +15,14 @@ class FeedsController < ApplicationController
     redirect_to :back
   end
 
+  def subscribe
+    redirect_to :back, if SubscriptionService.create user: current_user, feed: current_feed
+      { :notice => "Successfully subscribed to #{current_feed.subdomain}"}
+    else
+      { :error => "Something went wrong"}
+    end
+  end
+
   def approve_access
     user = User.find(params[:user_id])
     current_feed.allow(user).save

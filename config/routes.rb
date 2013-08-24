@@ -17,6 +17,7 @@ FeedEngine::Application.routes.draw do
   get "/:feed/visibility/toggle" => 'feeds#toggle_visibility', as: "toggle_visibility_feed"
   get "/:feed/services" => 'feeds#services', as: "services_feed"
   post "/:feed/add_service" => 'feeds#add_service', as: 'add_service_feed'
+  get "/:feed/subscribe" => "feeds#subscribe", as: "subscribe_feed"
   get "/:feed" => 'feeds#index', as: 'feed'
   
   root :to => "home#index"

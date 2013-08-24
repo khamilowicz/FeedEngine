@@ -2,6 +2,7 @@
 = @feed.user.nick
 = link_to "Visibility", visibility_feed_path
 = link_to "Linked Services", services_feed_path
+= link_to "Subscribe", subscribe_feed_path
 .forms
   = link_to 'Photos', '#'
   = render 'posts/photo_form', feed: current_feed, post: PhotoPost.new

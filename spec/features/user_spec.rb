@@ -128,6 +128,13 @@ describe "Authenticated user" do
       page.should have_posts(feed.posts)
     end
 
+    it "can refeed whole feeds" do
+      SubscriptionService.should_receive(:create).with(user: user, feed: feed){true}
+      click_link "Subscribe"
+      current_path.should eq("/#{feed.subdomain}")
+      page.should have_content "Successfully subscribed to #{feed.subdomain}"
+    end
+
     it "gives points to posts" do
       page.should have_no_content("Points! 1")
       click_link "Points!"
