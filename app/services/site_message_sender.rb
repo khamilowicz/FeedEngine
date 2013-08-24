@@ -1,13 +1,11 @@
 class SiteMessageSender
 
-  def self.send_message from_to
-    sender = from_to[:from]
-    receiver = from_to[:to]
-    type = from_to[:type]
+  def self.send_message message
 
-    message = Message.new content: from_to[:content], message_type: type.to_s
-    message.sender = sender
-    receiver.inbox << message
+    message[:to].inbox << Message.new(
+      content: message[:content], 
+      message_type: message[:type], 
+      sender: message[:from])
   end
   
 end

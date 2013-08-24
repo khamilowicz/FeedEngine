@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:refeed]
 
   def add_points
-    post = current_feed.posts.find(params[:id])
+    post = Post.find(params[:id])
     post.add_points
     post.save
     redirect_to :back

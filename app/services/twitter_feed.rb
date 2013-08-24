@@ -1,6 +1,6 @@
 class TwitterFeed
   def self.from source
-    TwitterFeed.new(source: source)
+    new(source: source)
   end
 
   attr_reader :source

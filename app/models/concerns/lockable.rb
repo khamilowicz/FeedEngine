@@ -19,7 +19,7 @@ module Lockable
     end
 
     def allow? user
-      self.public || self.allowed_users.where(id: user.id).exists?
+      public? || allowed_users.where(id: user.id).exists?
     end
 
     def allow user
@@ -28,7 +28,7 @@ module Lockable
     end
 
     def allow_owner
-      self.allowed_users << self.owner
+      allowed_users << owner
     end
 
     def lock
