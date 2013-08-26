@@ -7,5 +7,4 @@ module SubscriptionService
       user.main_feed.subscribe :feedEngine, feed.subdomain
     end
   end
-  
 end
