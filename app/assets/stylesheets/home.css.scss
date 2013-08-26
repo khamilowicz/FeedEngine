@@ -1,3 +1,45 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+html{
+  height: 100%;
+}
+html body{
+  background-color: rgb(189, 248, 234);
+  height: 95%;
+  overflow: auto;
+
+
+  .home{
+    position: relative;
+    left: 0;
+    padding: 1em 0.5em;
+    height: inherit;
+    .blogs.list{
+      a{font-size: 1.5em; }
+      a:visited, a:active{ text-decoration: none;}
+      line-height: 3em;
+      padding: 2em 0;
+      float: right;
+      width: 45%;
+      margin-right: 4em;
+      background-color: rgb(139, 216, 158);
+    }
+    h1{ 
+      font-size: 3em;
+      margin-bottom: 1.8em;
+    }
+    .copy p{
+      color: white;
+      line-height: 2em;
+      padding: 1em 2em;
+      font-size: 1.3em;
+      width: 35%;
+      background-color: rgb(91, 91, 155);
+      text-align: left; 
+    }
+    text-align: center;
+    background-color: white;
+  }
+}

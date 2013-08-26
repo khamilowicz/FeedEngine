@@ -1,0 +1,11 @@
+.forms
+  = link_to 'Photos', '#'
+  .tabs
+    .photo_form.tab
+      Photo post
+    .normal_form.tab
+      Normal post
+  .photo_form.form
+    = render 'posts/photo_form', feed: current_feed, post: PhotoPost.new
+  .normal_form.form
+    = render 'posts/form', feed: current_feed, post: Post.new

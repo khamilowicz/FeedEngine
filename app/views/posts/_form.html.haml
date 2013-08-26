@@ -1,6 +1,9 @@
 = form_for [feed, post], url: feed_posts_path(feed.subdomain) do |f|
-  = f.label :title
-  = f.text_field :title
-  = f.label :description
-  = f.text_area :description
-  = f.submit "Submit"
+  .title
+    = f.label :title
+    = f.text_field :title
+  .description
+    = f.label :description
+    = f.text_area :description
+  .submit
+    = f.submit "Submit"

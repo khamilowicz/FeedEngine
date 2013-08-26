@@ -1,11 +1,9 @@
-= "Total points #{current_feed.total_points}"
-= @feed.user.nick
-= link_to "Visibility", visibility_feed_path
-= link_to "Linked Services", services_feed_path
-= link_to "Subscribe", subscribe_feed_path
-.forms
-  = link_to 'Photos', '#'
-  = render 'posts/photo_form', feed: current_feed, post: PhotoPost.new
-  = render 'posts/form', feed: current_feed, post: Post.new
-.posts
-  = render @posts, feed: @feed
+.feed
+  = "Total points #{current_feed.total_points}"
+  = @feed.user.nick
+  = link_to "Visibility", visibility_feed_path
+  = link_to "Linked Services", services_feed_path
+  = link_to "Subscribe", subscribe_feed_path
+  = render 'forms'
+  .posts
+    = render @posts, feed: @feed 

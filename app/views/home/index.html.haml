@@ -1,2 +1,11 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+.home
+  %h1 MEDIA FEED
+  .blogs.list
+    - @feeds.each do |feed|
+      = link_to feed.capitalize, feed_path(feed)
+      <br/>
+  .copy
+    %p The only site you can share your photos, links and thoughts with your friends!
+
+
+

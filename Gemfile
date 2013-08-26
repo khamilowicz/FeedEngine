@@ -13,6 +13,8 @@ gem 'twitter'
 gem 'rails-observers'
 
 group :development do 
+  gem 'guard'
+  gem 'guard-livereload'
   gem 'better_errors'
   gem 'binding_of_caller'
 end

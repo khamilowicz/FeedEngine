@@ -1,3 +1,47 @@
 // Place all the styles related to the feed controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.photo_form{
+  background-color: red;
+}
+.normal_form{
+    z-index: 10;
+  background-color: green;
+}
+
+.feed{
+  margin-top: 1.8em;
+  background-color: white;
+  padding: 1.3em 0.8em;
+  font-size: 1.2em;
+
+  .forms{
+    position: relative;
+    width: 100%;
+ 
+
+    .tabs{
+      width: 100%;
+      position: relative;
+      top: -1em;
+      width: 50%;
+      .tab{
+        padding: 0 2em;
+        text-align: center;
+        float: left;
+        display: inline-block;
+        height: 1em;
+      }
+    }
+    .form{
+      width: 50%;
+      height: 15em;
+      position: absolute;
+      * {
+        margin: 1em 0;
+      }
+    }
+  }
+}
+
